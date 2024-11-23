@@ -36,4 +36,4 @@ jobs:
       if: failure() 
       with:
         webhook: ${{ secrets.DISCORD_WEBHOOK }}
-        message: 'FTP deploy failed. Please check the logs for errors.
+        message: 'FTP deploy failed. Please check the logs for errors.'
