@@ -81,7 +81,7 @@
     <tbody id="leaderboardBody"></tbody>
   </table>
 
-  <script src="/js/script.js"></>
+  <script src="/js/script.js"></script>
   <script src="/game/game.js"></script>
 </body>
 </html>
