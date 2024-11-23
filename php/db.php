@@ -7,7 +7,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET");
 header("Access-Control-Allow-Headers: Content-Type");
 
-require __DIR__ . '/private/config.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/private/config.php';
 
 try {
     $host = $config['DB_HOST'];
