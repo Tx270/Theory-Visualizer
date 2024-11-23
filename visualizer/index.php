@@ -41,6 +41,8 @@
     </div>
   </div>
 
+  <div id="unsupported"><h1>Sorry, Your device is not supported yet.</h1></div>
+
   <nav id="nav">
     <img src="/assets/ham.png" alt="menu" id="hamburger" onclick="openMenu()">
     <input type="text" id="scaleInp" spellcheck="false" placeholder="C major" autocomplete="off" onkeypress="entered(event.key)" onfocusout="entered('outclicked')" onclick="entered('clicked')">

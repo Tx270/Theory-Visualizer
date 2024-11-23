@@ -134,6 +134,11 @@ function main() {
 }
 
 function init() {
+  if (window.innerWidth > 768) {
+    document.getElementById('unsupported').style.display = 'flex';
+    return;
+  }
+
   window.onclick = function(event) { 
     event.target === settings && (closeSettings());
     event.target === menu && (closeMenu());

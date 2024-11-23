@@ -67,6 +67,8 @@
 
   <div id="loading"><div class="loader"></div></div>
 
+  <div id="unsupported"><h1>Sorry, Your device is not supported yet.</h1></div>
+
   <div id="fretboard"></div>
 
   <table id="leaderboard">

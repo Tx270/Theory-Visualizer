@@ -307,42 +307,6 @@ th, td {
   to { left: -300px; opacity: 0; }
 }
 
-#loading {
-  display: none;
-  align-content: center;
-  justify-content: center;
-  position: fixed;
-  transition: ease 200ms;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0);
-  z-index: 1000;
-  text-align: center;
-  color: white;
-  font-size: 24px;
-  line-height: 100vh;
-}
-
-.loader {
-  margin: auto auto;
-  width: 50px;
-  padding: 8px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: #ffffff;
-  --_m: 
-    conic-gradient(#0000 10%,#000),
-    linear-gradient(#000 0 0) content-box;
-  -webkit-mask: var(--_m);
-          mask: var(--_m);
-  -webkit-mask-composite: source-out;
-          mask-composite: subtract;
-  animation: l3 1s infinite linear;
-}
-@keyframes l3 {to{transform: rotate(1turn)}}
-
 
 /* ################################### - MODALS CONTENTS - ########################################### */
 
@@ -427,4 +391,61 @@ th, td {
   background-color: white;
   border-radius: 50%;
   cursor: pointer;
+}
+
+/* ################################### - POPUPS - ########################################### */
+
+#loading {
+  display: none;
+  align-content: center;
+  justify-content: center;
+  position: fixed;
+  transition: ease 200ms;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 1000;
+  text-align: center;
+  color: white;
+  font-size: 24px;
+  line-height: 100vh;
+}
+
+.loader {
+  margin: auto auto;
+  width: 50px;
+  padding: 8px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #ffffff;
+  --_m: 
+    conic-gradient(#0000 10%,#000),
+    linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+          mask: var(--_m);
+  -webkit-mask-composite: source-out;
+          mask-composite: subtract;
+  animation: l3 1s infinite linear;
+}
+@keyframes l3 {to{transform: rotate(1turn)}}
+
+
+#unsupported {
+  display: none;
+  align-content: center;
+  justify-content: center;
+  position: fixed;
+  transition: ease 200ms;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  z-index: 1000;
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  line-height: 100vh;
 }
