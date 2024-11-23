@@ -7,7 +7,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET");
 header("Access-Control-Allow-Headers: Content-Type");
 
-require $_SERVER['DOCUMENT_ROOT'] . '/private/config.php';
+$config = require $_SERVER['DOCUMENT_ROOT'] . '/private/config.php';
 
 try {
     $host = $config['DB_HOST'];
@@ -42,10 +42,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     try {
         $stmt = $pdo->prepare(file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/db/" . $mode . ".sql"));
-        if($mode === "add") {
+        if ($mode === "add") {
             $stmt->bindParam(':score', $score, PDO::PARAM_INT);
         }
-        if($mode !== 'top') {
+        if ($mode !== 'top') {
             $stmt->bindParam(':username', $username, PDO::PARAM_STR);
         }
 
