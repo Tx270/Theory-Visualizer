@@ -4,6 +4,8 @@
   <?php include $_SERVER['DOCUMENT_ROOT'] . '/php/head.php'; ?>
 </head>
 <body onload="init()">
+  <script> const baseUrl = <?php echo json_encode((require $_SERVER['DOCUMENT_ROOT'] . '/private/config.php')['BASE_URL']);?>; </script>
+
   <audio id="guitarSound"></audio>
 
   <?php include $_SERVER['DOCUMENT_ROOT'] . '/php/menu.php'; ?>
@@ -79,7 +81,7 @@
     <tbody id="leaderboardBody"></tbody>
   </table>
 
-  <script src="/js/script.js"></script>
+  <script src="/js/script.js"></>
   <script src="/game/game.js"></script>
 </body>
 </html>

@@ -43,9 +43,6 @@ function draw(scale) {
       id += getOctave(stringIndex, fret); // oktawa
       id += stringIndex.toString(); // numer struny
 
-      console.log(scale)
-      console.log(String.fromCharCode(scale.indexOf(note) + 65))
-
       const noteElement = document.createElement('div');
       noteElement.classList.add('string');
       let noteDiv = `<div class="note ${intervals[scale.indexOf(note)]}" id="${id}" onclick="playGuitarNote(this.id)">${note}</div>`;
@@ -167,7 +164,7 @@ function playGuitarNote(id) {
   } else {
     note = id[0] + id[4];
   }
-  document.getElementById('guitarSound').src = `/audio/${sound}/` + note + ".mp3";
+  document.getElementById('guitarSound').src = baseUrl + `/audio/${sound}/` + note + ".mp3";
   document.getElementById('guitarSound').play();
   document.getElementById(id).style.transform = "scale(1.4)";
   setTimeout(function() {

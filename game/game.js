@@ -8,7 +8,7 @@ notes = notesSharps;
 
 
 function playGuitarNote(note, octave) {
-  document.getElementById('guitarSound').src = `/audio/${sound}/` + sharpToFlat(note) + octave + ".mp3";
+  document.getElementById('guitarSound').src = baseUrl + `/audio/${sound}/` + sharpToFlat(note) + octave + ".mp3";
   document.getElementById('guitarSound').play();
   document.getElementById("choosen").style.transform = "scale(1.4)";
   setTimeout(function() {
