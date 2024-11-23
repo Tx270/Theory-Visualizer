@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <?php include $_SERVER['DOCUMENT_ROOT'] + '/php/head.php'; ?>
+  <?php include $_SERVER['DOCUMENT_ROOT'] . '/php/head.php'; ?>
 </head>
 <body onload="init()">
   <audio id="guitarSound"></audio>
 
-  <?php include $_SERVER['DOCUMENT_ROOT'] + '/php/menu.php'; ?>
+  <?php include $_SERVER['DOCUMENT_ROOT'] . '/php/menu.php'; ?>
 
   <div id="settings" class="modal">
     <div id="settings-content" class="modal-content">
