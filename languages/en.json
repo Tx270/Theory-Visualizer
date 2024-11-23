@@ -1,0 +1,18 @@
+{
+    "funcModeScaleLabel": " Scales Mode",
+    "funcModeChordLabel": " Chords Mode",
+    "displayModeNoteLabel": " Note Names",
+    "displayModeNumberLable": " Harmonic Degrees",
+    "tuningLable": "Tuning:",
+    "soundLable": "Sound:",
+    "acoustic_guitar_nylon": "Classical guitar",
+    "acoustic_guitar_steel": "Acustic guitar",
+    "electric_guitar_clean": "Electric Clean",
+    "electric_guitar_jazz": "Electric Jazz",
+    "distortion_guitar": "Electric Distortion",
+    "acoustic_grand_piano": "Piano",
+    "acoustic_bass": "Acoustic Bass",
+    "electric_bass_finger": "Electric Bass",
+    "colorChangeRangeLable": "App Color:",
+    "unsupported": "Sorry, Your device is not supported yet."
+}

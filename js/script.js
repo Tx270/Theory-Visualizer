@@ -284,3 +284,78 @@ function colorChange(value) {
   document.getElementById("colorChangeRange").style.backgroundColor = 'hsl(' + value + ', 93%, 30%)';
   document.documentElement.style.cssText = "--main: " + value;
 }
+
+// ########################################## - TRANSLATIONS - ##########################################################
+
+async function loadTranslation(language) {
+  try {
+    const response = await fetch(`/languages/${language}.json`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    const elements = document.querySelectorAll('.trn');
+
+    elements.forEach(element => {
+      const key = element.id;
+
+      if (data[key]) {
+        const span = element.querySelector('span');
+
+        if (span) {
+          span.textContent = data[key];
+        } else {
+          element.textContent = data[key];
+        }
+      }
+    });
+  } catch (error) {
+    console.error('Error loading translation:', error);
+  }
+}
+
+// ########################################## - STARTER - ##########################################################
+
+async function starter() {
+  if (window.innerWidth > 768) {
+    document.getElementById('unsupported').style.display = 'flex';
+    return;
+  }
+  
+  window.onclick = function(event) { 
+    event.target === settings && (closeSettings());
+    event.target === menu && (closeMenu());
+  }
+  
+  Cookies.get('scale') === undefined && Cookies.set('scale', 'C-major', { expires: 14 });
+  Cookies.get('mode') === undefined && Cookies.set('mode', 'scales', { expires: 14 });
+  Cookies.get('color') === undefined && Cookies.set('color', '200', { expires: 14 });
+  Cookies.get('display') === undefined && Cookies.set('display', 'notes', { expires: 14 });
+  Cookies.get('sound') === undefined && Cookies.set('sound', 'acoustic_guitar_nylon', { expires: 14 });
+  Cookies.get('tuning') === undefined && Cookies.set('tuning', 'E2-A2-D3-G3-B3-E4', { expires: 14 });
+  Cookies.get('username') === undefined && Cookies.set('username', '', { expires: 14 });
+
+  const userLang = navigator.language.slice(0, 2) || 'en';
+  if(languages.includes(userLang)) {
+    await loadTranslation(userLang);
+  } else {
+    await loadTranslation('en');
+  }
+
+  document.getElementById("colorChangeRange").value = Cookies.get("color");
+  colorChange(Cookies.get("color"));
+
+  tuning = Cookies.get('tuning').split("-");
+  document.getElementById("tuning").value = tuning.join(" ");
+
+  sound = Cookies.get("sound");
+  document.getElementById("sound").value = sound;
+
+  Cookies.get('mode') == "chords" && (document.getElementById("funcModeChord").checked = "true");
+  Cookies.get('display') == "numbers" && (document.getElementById("displayModeNumber").checked = "true");
+
+  document.getElementById("nav").style.display = "flex";
+
+  init();
+}

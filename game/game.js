@@ -134,35 +134,8 @@ function main() {
 }
 
 function init() {
-  if (window.innerWidth > 768) {
-    document.getElementById('unsupported').style.display = 'flex';
-    return;
-  }
-
-  window.onclick = function(event) { 
-    event.target === settings && (closeSettings());
-    event.target === menu && (closeMenu());
-  }
-
-  Cookies.get('scale') === undefined && Cookies.set('scale', 'C-major', { expires: 14 });
-  Cookies.get('mode') === undefined && Cookies.set('mode', 'scales', { expires: 14 });
-  Cookies.get('color') === undefined && Cookies.set('color', '200', { expires: 14 });
-  Cookies.get('display') === undefined && Cookies.set('display', 'notes', { expires: 14 });
-  Cookies.get('sound') === undefined && Cookies.set('sound', 'acoustic_guitar_nylon', { expires: 14 });
-  Cookies.get('tuning') === undefined && Cookies.set('tuning', 'E2-A2-D3-G3-B3-E4', { expires: 14 });
-  Cookies.get('username') === undefined && Cookies.set('username', '', { expires: 14 });
-
-  document.getElementById("colorChangeRange").value = Cookies.get("color");
-  colorChange(Cookies.get("color"));
   username = Cookies.get("username");
   nickname.value = username;
-  tuning = Cookies.get('tuning').split("-");
-  document.getElementById("tuning").value = tuning.join(" ");
-  sound = Cookies.get("sound");
-  document.getElementById("sound").value = sound;
-  Cookies.get('mode') == "chords" && (document.getElementById("funcModeChord").checked = "true");
-  Cookies.get('display') == "numbers" && (document.getElementById("displayModeNumber").checked = "true");
-  document.getElementById("nav").style.display = "flex";
 }
 
 function entered(key) {

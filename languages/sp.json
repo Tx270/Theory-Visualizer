@@ -1,0 +1,18 @@
+{
+    "funcModeScaleLabel": " Modo de escalas",
+    "funcModeChordLabel": " Modo de acordes",
+    "displayModeNoteLabel": " Nombres de notas",
+    "displayModeNumberLable": " Grados armónicos",
+    "tuningLable": "Afinación:",
+    "soundLable": "Sonido:",
+    "acoustic_guitar_nylon": "Guitarra clásica",
+    "acoustic_guitar_steel": "Guitarra acústica",
+    "electric_guitar_clean": "Guitarra eléctrica limpia",
+    "electric_guitar_jazz": "Guitarra eléctrica jazz",
+    "distortion_guitar": "Guitarra eléctrica distorsionada",
+    "acoustic_grand_piano": "Piano",
+    "acoustic_bass": "Bajo acústico",
+    "electric_bass_finger": "Bajo eléctrico",
+    "colorChangeRangeLable": "Color de la aplicación:",
+    "unsupported": "Lo siento, tu dispositivo aún no es compatible."
+}
