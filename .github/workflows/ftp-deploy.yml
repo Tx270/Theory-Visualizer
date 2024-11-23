@@ -26,13 +26,13 @@ jobs:
           private/config.php
 
     - name: Discord notification - Success
-      uses: cl8dep/action-discord@v0
+      uses: cl8dep/action-discord@main
       if: success()
       with:
         webhook: ${{ secrets.DISCORD_WEBHOOK }}
         message: 'FTP deploy completed successfully! All files are now updated.'
     - name: Discord notification - Failure
-      uses: cl8dep/action-discord@v0
+      uses: cl8dep/action-discord@main
       if: failure() 
       with:
         webhook: ${{ secrets.DISCORD_WEBHOOK }}
