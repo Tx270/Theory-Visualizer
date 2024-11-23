@@ -12,13 +12,13 @@ A web-based app that helps users practice musical scales and chords by visualizi
 - **Game Mode**: Test your knowlage of the freatboard.
 - **Leaderboard**: Track high scores of players through a MySQL database.
 
-## Tech Used
-
-- [**js-cookie**](https://github.com/js-cookie/js-cookie): For help with cookie management.
-- [**tonal**](https://github.com/tonaljs/tonal): For calculating scales, chords, intervals and for validating note names.
-- [**midi-js-soundfonts**](https://github.com/gleitz/midi-js-soundfonts): For all the note sounds.
-- [**FTP Deploy**](https://github.com/marketplace/actions/ftp-deploy): For deploying the website through file transfer protocole.
-
-## Availability
+## Usage
 
 This project is hosted on [InfinityFree](https://www.infinityfree.com/) under [this](http://tx.ct.ws/) url.
+
+## Acknowledgments
+**I am using the following APIs/libraries/packages for my web app:**
+- [**js-cookie**](https://github.com/js-cookie/js-cookie): For help with cookie management.
+- [**tonal**](https://github.com/tonaljs/tonal): For calculating scales, chords, intervals and for validating note names.
+- [**midi-js-soundfonts**](https://github.com/gleitz/midi-js-soundfonts): For all the mp3 files of note sounds.
+- [**FTP Deploy**](https://github.com/marketplace/actions/ftp-deploy): For deploying the website through file transfer protocole.
