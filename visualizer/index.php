@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <?php include '../php/head.php'; ?>
+  <?php include $_SERVER['DOCUMENT_ROOT'] + '/php/head.php'; ?>
 </head>
 <body onload="init()">
   <audio id="guitarSound"></audio>
 
-  <?php include '../php/menu.php'; ?>
+  <?php include $_SERVER['DOCUMENT_ROOT'] + '/php/menu.php'; ?>
 
   <div id="settings" class="modal">
     <div id="settings-content" class="modal-content">
@@ -38,8 +38,6 @@
       <label>App Color:<input type="range" id="colorChangeRange" min="0" max="360" step="5" value="205" oninput="colorChange(this.value);" onchange="Cookies.set('color', this.value, { expires: 14 });"></label>
     </div>
   </div>
-
-  <?php include '/php/menu.php'; ?>
 
   <nav id="nav">
     <img src="/assets/ham.png" alt="menu" id="hamburger" onclick="openMenu()">
