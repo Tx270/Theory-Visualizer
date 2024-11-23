@@ -1,0 +1,430 @@
+/* #################################### - BASIC - ########################################## */
+
+:root {
+  --main: 203;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+
+/* ################################## - FRETBOARD - ############################################ */
+
+
+#fretboard {
+  display: none;
+  gap: 2px;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+
+.fret-number {
+  text-align: center;
+  font-weight: bold;
+  padding: 4px;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+
+.string {
+  background-color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #444;
+  color: rgb(71, 71, 71);
+  font-weight: 500;
+}
+
+.note {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  transition: 200ms ease-in-out;
+  background-color: hsl(var(--main), 100%, 30%);
+  color: #fff;
+}
+
+.pryma {
+  background-color: hsl(var(--main), 100%, 100%);
+  color: #000;
+}
+
+.tercja {
+  background-color: hsl(var(--main), 100%, 75%);
+  color: #000;
+}
+
+.kwinta {
+  background-color: hsl(var(--main), 100%, 50%);
+  color: #000;
+}
+
+
+/* ################################### - NAVBAR - ########################################### */
+
+
+#nav {
+  height: 6vh;
+  width: 100%;
+  background-color: hsl(var(--main), 93%, 30%);
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#hamburger {
+  height: 27px;
+  width: 27px;
+  margin: 10px;
+}
+
+#scaleInp, #noteInp, #nickname {
+  width: 150px;
+  height: 70%;
+  text-align: center;
+  background-color: #f1f1f1;
+  border: white solid 1px;
+  border-radius: 4px;
+  color: black;
+  font-weight: 900;
+  font-size: larger;
+  margin: 15%;
+}
+
+#notesOrNumbers {
+  height: 27px;
+  width: 27px;
+  margin: 10px;
+}
+
+/* ################################### - GAME - ########################################### */
+
+#datadisplay {
+  width: 60%;
+  height: 7vh;
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 900;
+}
+#right {
+  color: green;
+}
+#timer {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 500;
+}
+#wrong {
+  color: red;
+}
+
+
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 85vh;
+}
+.info h2 {
+  margin-bottom: -10px;
+}
+.info button {
+  margin: 10px;
+  height: 40px;
+  width: 150px;
+  font-size: large;
+  color: #fff;
+  background-color: hsl(var(--main), 93%, 30%);
+  border: 0;
+  border-radius: 4px;
+}
+
+.info button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.info button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.info button:hover span {
+  padding-right: 25px;
+}
+
+.info button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+
+#leaderboard {
+  display: none;
+  position: relative;
+  height: 54vh;
+  width: 100%; 
+  table-layout: fixed;
+  width: auto;
+}
+
+#endInfo {
+  display: none;
+  height: 40vh;
+}
+
+#nickname {
+  margin: 0px;
+  height: 30px;
+  margin-bottom: 20px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 80%;
+  font-weight: 500;
+  display: none;
+}
+
+th, td {
+  text-align: center;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+#leaderboardBody>tr:last-child>td {
+  border-bottom: 0;
+}
+
+/* ################################### - MODALS - ########################################### */
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: 100ms ease-in-out;
+}
+
+.modal.open {
+  display: block;
+}
+
+.modal-content {
+  background-color: #1a1a1a;
+  margin: 15% auto;
+  padding: 20px;
+  padding-top: 40px;
+  border-radius: 10px;
+  border: 1px solid #888;
+  width: 80%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  position: relative;
+  animation: slideDown 0.2s forwards;
+}
+
+#menu-content {
+  margin-left: 0px;
+  margin-top: 0px;
+  border: 0px;
+  border-radius: 0;
+  height: 100%;
+  width: 40%;
+  font-weight: 500;
+  padding-top: 70px;
+}
+
+.modal.open #settings-content {
+  animation: slideDown 0.2s forwards;
+}
+
+.modal.closing #settings-content {
+  animation: slideUp 0.2s forwards;
+}
+
+.modal.open #menu-content {
+  animation: slideRight 0.2s forwards;
+}
+
+.modal.closing #menu-content {
+  animation: slideLeft 0.2s forwards;
+}
+
+@keyframes slideDown {
+  from { top: -300px; opacity: 0; }
+  to { top: 0; opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { top: 0; opacity: 1; }
+  to { top: -300px; opacity: 0; }
+}
+
+@keyframes slideRight {
+  from { left: -300px; opacity: 0; }
+  to { left: 0px; opacity: 1; }
+}
+
+@keyframes slideLeft {
+  from { left: 0; opacity: 1; }
+  to { left: -300px; opacity: 0; }
+}
+
+#loading {
+  display: none;
+  align-content: center;
+  justify-content: center;
+  position: fixed;
+  transition: ease 200ms;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 1000;
+  text-align: center;
+  color: white;
+  font-size: 24px;
+  line-height: 100vh;
+}
+
+.loader {
+  margin: auto auto;
+  width: 50px;
+  padding: 8px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #ffffff;
+  --_m: 
+    conic-gradient(#0000 10%,#000),
+    linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+          mask: var(--_m);
+  -webkit-mask-composite: source-out;
+          mask-composite: subtract;
+  animation: l3 1s infinite linear;
+}
+@keyframes l3 {to{transform: rotate(1turn)}}
+
+
+/* ################################### - MODALS CONTENTS - ########################################### */
+
+
+.close {
+  color: red;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  right: 13px;
+  top: 5px;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-content label {
+  font-size: 18px;
+  color: white;
+  margin-bottom: 40px;
+  font-weight: 500;
+  width: 100%;
+}
+
+#menu #menu-content a {
+  text-decoration: none;
+  color: white;
+  font-size: large;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#settings #settings-content #displayModeNoteLabel, #settings #settings-content #funcModeScaleLabel {
+  margin-bottom: 10px;
+}
+
+#settings #settings-content input[type="radio"] {
+  accent-color: hsl(var(--main), 93%, 30%);
+}
+
+#settings #settings-content label #tuning, #settings #settings-content label #sound {
+  margin: 10px 0px;
+  border-radius: 5px;
+  padding: 2px;
+  font-weight: 500;
+  height: 20px;
+  width: 100%;
+  height: 30px;
+  text-align: center;
+  font-size: 14px;
+  border: 0;
+  accent-color: hsl(var(--main), 93%, 30%);
+}
+
+#settings #settings-content #colorChangeRange {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 10px;
+  background-color: hsl(var(--main), 93%, 30%);
+  border-radius: 5px;
+  outline: none;
+}
+
+#settings #settings-content #colorChangeRange::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#settings #settings-content #colorChangeRange::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
