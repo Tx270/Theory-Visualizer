@@ -9,6 +9,7 @@ const intervals = ["pryma", "nona", "tercja", "kwarta", "kwinta", "seksta", "sep
 const tonal = window.Tonal;
 var languages = JSON.parse(document.querySelector('meta[name="languages"]').getAttribute('content'));
 const language = languages.pop();
+var soundCache = {};
 var tuning = [];
 var sound = "";
 var notes = [];
@@ -142,6 +143,38 @@ function isAlphaNumeric(str) {
   return true;
 };
 
+async function preloadSounds() {
+  let end = Number(tuning.at(-1).slice(-1)) + 1;
+  let start = Number(tuning[0].slice(-1));
+  const range = Array.from({ length: (end - start) }, (v, k) => k + start);
+
+  let loadedCount = 0;
+
+  const promises = [];
+
+  notesFlats.forEach(note => {
+    range.forEach(octave => {
+      const noteFile = sharpToFlat(note) + octave + ".mp3";
+      const s = new Audio(baseUrl + `assets/audio/${sound}/` + noteFile);
+
+      s.preload = 'auto';
+
+      const soundPromise = new Promise((resolve) => {
+        s.oncanplaythrough = () => {
+          loadedCount++;
+          resolve();
+        };
+      });
+
+      promises.push(soundPromise);
+
+      soundCache[note + octave] = s;
+    });
+  });
+  await Promise.all(promises);
+  console.log("Preloading complete");
+}
+
 // ########################################### - MODALS - #########################################################
 
 function openSettings() {
@@ -190,7 +223,7 @@ function closeMenu() {
 
 // ########################################## - SETTINGS - ##########################################################
 
-function enteredTuning(key) {
+async function enteredTuning(key) {
   let input = document.getElementById("tuning");
   if (key == "Enter") {
     input.blur();
@@ -211,7 +244,8 @@ function enteredTuning(key) {
     }
     for(let note of input.value.split(" ")) {
       try {
-        if(tonal.Note.get(note)["empty"] || note.match(/^\d+|\d+\b|\d+(?=\w)/g).map(function (v) {return +v;}) > 7) {
+        let n = note.match(/^\d+|\d+\b|\d+(?=\w)/g).map(function (v) {return +v;});
+        if(tonal.Note.get(note)["empty"] || n > 7 || n < 1) {
           alert("Not a valid tuning!")
           input.value = tuning.join(" ");
           break
@@ -227,6 +261,7 @@ function enteredTuning(key) {
     input.placeholder = tuning;
     document.getElementById("fretboard").innerHTML = "";
     Cookies.set('tuning', tuning.join("-"), { expires: 14 });
+    await preloadSounds();
     draw(scale);
   } else if(key == "clicked") {
     input.placeholder = input.value;
@@ -234,9 +269,10 @@ function enteredTuning(key) {
   }
 }
 
-function soundChange() {
+async function soundChange() {
   sound = document.getElementById("sound").value;
   Cookies.set('sound', sound, { expires: 14 });
+  await preloadSounds()
 }
 
 function scalesOrChords(value) {
@@ -321,9 +357,10 @@ async function loadTranslation(language) {
 // ########################################## - STARTER - ##########################################################
 
 async function starter() {
+  await loadTranslation(language);
+
   if (window.innerWidth > 768) {
     document.getElementById('unsupported').style.display = 'flex';
-    await loadTranslation(language);
     return;
   }
   
@@ -353,6 +390,8 @@ async function starter() {
   Cookies.get('display') == "numbers" && (document.getElementById("displayModeNumber").checked = "true");
 
   document.getElementById("nav").style.display = "flex";
+
+  preloadSounds();
 
   init();
 }

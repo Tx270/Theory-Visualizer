@@ -8,8 +8,18 @@ notes = notesSharps;
 
 
 function playGuitarNote(note, octave) {
-  document.getElementById('guitarSound').src = baseUrl + `/audio/${sound}/` + sharpToFlat(note) + octave + ".mp3";
-  document.getElementById('guitarSound').play();
+  console.log(sound);
+
+  const soundKey = sharpToFlat(note) + octave;
+  
+  if (soundCache[soundKey]) {
+    soundCache[soundKey].play();
+  } else {
+    console.log("nie ma pliku w cache!");
+    const s = new Audio(baseUrl + `assets/audio/${sound}/` + sharpToFlat(note) + octave + ".mp3");
+    s.play();
+  }
+
   document.getElementById("choosen").style.transform = "scale(1.4)";
   setTimeout(function() {
     document.getElementById("choosen").style.transform = "scale(1)";

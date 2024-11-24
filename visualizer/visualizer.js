@@ -143,7 +143,7 @@ function playGuitarNote(id) {
   } else {
     note = id[0] + id[4];
   }
-  document.getElementById('guitarSound').src = baseUrl + `/audio/${sound}/` + note + ".mp3";
+  document.getElementById('guitarSound').src = baseUrl + `assets/audio/${sound}/` + note + ".mp3";
   document.getElementById('guitarSound').play();
   document.getElementById(id).style.transform = "scale(1.4)";
   setTimeout(function() {
