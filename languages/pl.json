@@ -3,6 +3,7 @@
     "funcModeChordLabel": " Tryb akordów",
     "displayModeNoteLabel": " Nazwy nut",
     "displayModeNumberLable": " Stopnie skali/interwały",
+
     "tuningLable": "Strojenie:",
     "soundLable": "Dźwięk:",
     "acoustic_guitar_nylon": "Gitara klasyczna",
@@ -14,5 +15,17 @@
     "acoustic_bass": "Gitara basowa akustyczna",
     "electric_bass_finger": "Gitara basowa elektryczna",
     "colorChangeRangeLable": "Kolor aplikacji:",
-    "unsupported": "Przepraszamy, Twoje urządzenie nie jest jeszcze obsługiwane."
+
+
+    "unsupported": "Przepraszamy, Twoje urządzenie nie jest jeszcze obsługiwane.",
+
+    "startInfoDesc": "Nazwij 15 dziwięków na gitarze najszybciej jak to możliwe!",
+    "endInfoScore": "Twój wynik to ",
+    "endInfoTime": "W czasie ",
+    "endInfoSeconds": " sekund",
+
+    "leaderboardPlace": "Miejsce",
+    "leaderboardPlayer": "Gracz",
+    "leaderboardBest": "Najlepszy",
+    "leaderboardDate": "Data"
 }

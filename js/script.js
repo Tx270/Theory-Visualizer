@@ -336,12 +336,8 @@ async function starter() {
   Cookies.get('tuning') === undefined && Cookies.set('tuning', 'E2-A2-D3-G3-B3-E4', { expires: 14 });
   Cookies.get('username') === undefined && Cookies.set('username', '', { expires: 14 });
 
-  const userLang = navigator.language.slice(0, 2) || 'en';
-  if(languages.includes(userLang)) {
-    await loadTranslation(userLang);
-  } else {
-    await loadTranslation('en');
-  }
+
+  await loadTranslation(language);
 
   document.getElementById("colorChangeRange").value = Cookies.get("color");
   colorChange(Cookies.get("color"));

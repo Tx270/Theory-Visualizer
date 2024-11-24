@@ -3,6 +3,7 @@
     "funcModeChordLabel": " Chords Mode",
     "displayModeNoteLabel": " Note Names",
     "displayModeNumberLable": " Harmonic Degrees",
+
     "tuningLable": "Tuning:",
     "soundLable": "Sound:",
     "acoustic_guitar_nylon": "Classical guitar",
@@ -14,5 +15,17 @@
     "acoustic_bass": "Acoustic Bass",
     "electric_bass_finger": "Electric Bass",
     "colorChangeRangeLable": "App Color:",
-    "unsupported": "Sorry, Your device is not supported yet."
+
+    
+    "unsupported": "Sorry, Your device is not supported yet.",
+
+    "startInfoDesc": "Name 15 notes on the guitar as fast as possible!",
+    "endInfoScore": "Your score is ",
+    "endInfoTime": "In time of ",
+    "endInfoSeconds": " seconds",
+
+    "leaderboardPlace": "Place",
+    "leaderboardPlayer": "Player",
+    "leaderboardBest": "Best",
+    "leaderboardDate": "Date"
 }

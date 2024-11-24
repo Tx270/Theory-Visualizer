@@ -4,12 +4,17 @@
   <?php include $_SERVER['DOCUMENT_ROOT'] . '/php/head.php'; ?>
 </head>
 <body onload="starter()">
-  <script> const baseUrl = <?php echo json_encode((require $_SERVER['DOCUMENT_ROOT'] . '/private/config.php')['BASE_URL']);?>; </script>
-  <script> const languages = <?php echo json_encode(require $_SERVER['DOCUMENT_ROOT'] . '/php/languages.php');?>; </script>
-
-  <audio id="guitarSound"></audio>
-
+  <script> 
+    const baseUrl = <?php echo json_encode((require $_SERVER['DOCUMENT_ROOT'] . '/private/config.php')['BASE_URL']);?>;
+    var languages = <?php echo json_encode(require $_SERVER['DOCUMENT_ROOT'] . '/php/languages.php');?>;
+    var language = languages.pop();
+  </script>
   <?php include $_SERVER['DOCUMENT_ROOT'] . '/php/menu.php'; ?>
+  <audio id="guitarSound"></audio>
+  <div id="loading"><div class="loader"></div></div>
+  <div id="fretboard"></div>
+  <h1 id="unsupported" class="trn"></h1>
+
 
   <div id="settings" class="modal">
     <div id="settings-content" class="modal-content">
@@ -54,15 +59,12 @@
     </div>
   </div>
 
-  <h1 id="unsupported" class="trn"></h1>
 
   <nav id="nav">
     <img src="/assets/ham.png" alt="menu" id="hamburger" onclick="openMenu()">
     <input type="text" id="scaleInp" spellcheck="false" placeholder="C major" autocomplete="off" onkeypress="entered(event.key)" onfocusout="entered('outclicked')" onclick="entered('clicked')">
     <img src="/assets/set.png" alt="settings" id="notesOrNumbers" class="notesOrNumbers" onclick="openSettings();">
   </nav>
-
-  <div id="fretboard"></div>
 
   <script src="/js/script.js"></script>
   <script src="/visualizer/visualizer.js"></script>

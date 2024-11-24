@@ -1,9 +1,33 @@
 <?php
-$lan = array_diff(scandir($_SERVER['DOCUMENT_ROOT'] . '/languages'), array('.', '..'));
-$lan2 = [];
+$files = array_diff(scandir($_SERVER['DOCUMENT_ROOT'] . '/languages'), array('.', '..'));
+$avalibleLangs = [];
 
-foreach ($lan as $key => $value) {
-    array_push($lan2, explode(".", $value)[0]);
+foreach ($files as $key => $value) {
+    array_push($avalibleLangs, explode(".", $value)[0]);
 }
 
-return $lan2;
+$acc = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+
+$parts = explode(',', $acc);
+
+$preredLangs = [];
+
+foreach ($parts as $part) {
+    $langCode = explode(';', $part)[0];
+    $langCode = substr($langCode, 0, 2);
+    if (!in_array($langCode, $preredLangs)) {
+        $preredLangs[] = $langCode;
+    }
+}
+
+$commonLangs = array_intersect($preredLangs, $avalibleLangs);
+
+$prefered = reset($commonLangs);
+
+if($prefered) {
+    array_push($avalibleLangs, $prefered);
+} else {
+    array_push($avalibleLangs, "en");
+}
+
+return $avalibleLangs;
