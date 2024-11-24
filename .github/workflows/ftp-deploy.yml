@@ -23,7 +23,8 @@ jobs:
         local-dir: ./
         server-dir: /htdocs/
         exclude: |
-          private/config.php
+          php/config.php
+          README.md
 
     - name: Discord notification - Success
       uses: cl8dep/action-discord@main

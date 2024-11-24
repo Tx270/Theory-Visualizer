@@ -1,5 +1,5 @@
 <?php
-$files = array_diff(scandir($_SERVER['DOCUMENT_ROOT'] . '/languages'), array('.', '..'));
+$files = array_diff(scandir($_SERVER['DOCUMENT_ROOT'] . '/assets/languages'), array('.', '..'));
 $avalibleLangs = [];
 
 foreach ($files as $key => $value) {

@@ -9,6 +9,6 @@
     <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
     <script src="/js/libs/tonal.js"></script>
     <script src="/js/libs/cookies.js"></script>
-    <meta name="base-url" content="<?= htmlspecialchars((require $_SERVER['DOCUMENT_ROOT'] . '/private/config.php')['BASE_URL']); ?>">
+    <meta name="base-url" content="<?= htmlspecialchars((require $_SERVER['DOCUMENT_ROOT'] . '/php/config.php')['BASE_URL']); ?>">
     <meta name="languages" content="<?= htmlspecialchars(json_encode(require $_SERVER['DOCUMENT_ROOT'] . '/php/languages.php')); ?>">
 </head>

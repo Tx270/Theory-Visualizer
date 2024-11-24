@@ -328,7 +328,7 @@ function colorChange(value) {
 
 async function loadTranslation(language) {
   try {
-    const response = await fetch(`/languages/${language}.json`);
+    const response = await fetch(`/assets/languages/${language}.json`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
