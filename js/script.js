@@ -323,6 +323,7 @@ async function loadTranslation(language) {
 async function starter() {
   if (window.innerWidth > 768) {
     document.getElementById('unsupported').style.display = 'flex';
+    await loadTranslation(language);
     return;
   }
   
@@ -330,8 +331,6 @@ async function starter() {
     event.target === settings && (closeSettings());
     event.target === menu && (closeMenu());
   }
-
-  await loadTranslation(language);
   
   Cookies.get('scale') === undefined && Cookies.set('scale', 'C-major', { expires: 14 });
   Cookies.get('mode') === undefined && Cookies.set('mode', 'scales', { expires: 14 });

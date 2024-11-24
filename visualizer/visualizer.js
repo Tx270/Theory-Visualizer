@@ -132,7 +132,6 @@ function entered(key) {
   }
 }
 
-
 function playGuitarNote(id) {
   let note;
   if(id[0].toUpperCase() !== id[0]) {
