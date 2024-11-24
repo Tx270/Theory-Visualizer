@@ -1,6 +1,6 @@
-# Musical Scale and Chord Visualizer
+# Musical Scale and Chord Visualizer for mobile
 
-A web-based app that helps users practice musical scales and chords by visualizing them on the guitar. It also has a game mode to teach the users notes on the freatboard.
+A web-based mobile app that helps users practice musical scales and chords by visualizing them on the guitar. It also has a game mode to teach the users notes on the freatboard.
 
 ## Features
 
@@ -14,7 +14,7 @@ A web-based app that helps users practice musical scales and chords by visualizi
 
 ## Usage
 
-This project is hosted on [InfinityFree](https://www.infinityfree.com/) under [this](http://tx.ct.ws/) url.
+This project is hosted on [InfinityFree](https://www.infinityfree.com/) under [this](https://tx.ct.ws/) url.
 
 ## Acknowledgments
 **I am using the following APIs/libraries/packages for my web app:**
