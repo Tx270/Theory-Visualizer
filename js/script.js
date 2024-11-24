@@ -1,11 +1,14 @@
 const fretboard = document.getElementById('fretboard');
 const settings = document.getElementById("settings");
 const menu = document.getElementById("menu");
+const baseUrl = document.querySelector('meta[name="base-url"]').getAttribute('content');
 const notesFlats = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
 const notesSharps = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 const markers = [3, 5, 7, 9, 12];
 const intervals = ["pryma", "nona", "tercja", "kwarta", "kwinta", "seksta", "septyma"]
 const tonal = window.Tonal;
+var languages = JSON.parse(document.querySelector('meta[name="languages"]').getAttribute('content'));
+const language = languages.pop();
 var tuning = [];
 var sound = "";
 var notes = [];
@@ -327,6 +330,8 @@ async function starter() {
     event.target === settings && (closeSettings());
     event.target === menu && (closeMenu());
   }
+
+  await loadTranslation(language);
   
   Cookies.get('scale') === undefined && Cookies.set('scale', 'C-major', { expires: 14 });
   Cookies.get('mode') === undefined && Cookies.set('mode', 'scales', { expires: 14 });
@@ -335,9 +340,6 @@ async function starter() {
   Cookies.get('sound') === undefined && Cookies.set('sound', 'acoustic_guitar_nylon', { expires: 14 });
   Cookies.get('tuning') === undefined && Cookies.set('tuning', 'E2-A2-D3-G3-B3-E4', { expires: 14 });
   Cookies.get('username') === undefined && Cookies.set('username', '', { expires: 14 });
-
-
-  await loadTranslation(language);
 
   document.getElementById("colorChangeRange").value = Cookies.get("color");
   colorChange(Cookies.get("color"));

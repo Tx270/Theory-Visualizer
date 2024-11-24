@@ -6,3 +6,7 @@
         <a href="#"> Notepad </a>
     </div>
  </div>
+
+<div id="loading"><div class="loader"></div></div>
+<div id="fretboard"></div>
+<h1 id="unsupported" class="trn"></h1>
