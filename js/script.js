@@ -357,6 +357,12 @@ async function loadTranslation(language) {
 // ########################################## - STARTER - ##########################################################
 
 async function starter() {
+
+  const timer = setTimeout(() => {
+    document.getElementById("loading").style.display = "flex";
+    document.getElementById("loading").style.backgroundColor = "rgba(0, 0, 0, 0.3)";
+  }, 500);
+
   await loadTranslation(language);
 
   if (window.innerWidth > 768) {
@@ -394,4 +400,8 @@ async function starter() {
   preloadSounds();
 
   init();
+
+  clearTimeout(timer);
+  document.getElementById("loading").style.display = "none";
+  document.getElementById("loading").style.backgroundColor = "rgba(0, 0, 0, 0)";
 }

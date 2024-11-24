@@ -119,28 +119,27 @@ function main() {
   if(!isAlphaNumeric(nickname.value) || !nickname.value || nickname.value.length > 30) {
     alert('Enter a nickname consisting of only letters and numbers below 30 chars');
     return;
-  } else {
-    setTimeout(function () {
-      username = nickname.value;
-      Cookies.set('username', username, { expires: 14 });
-      right = 0, wrong = 0;
-      sec = 0, min = 0, stop = false;
-      document.getElementById('datadisplay').style.display = 'flex';
-      document.getElementById('noteInp').hidden = false;
-      document.getElementById('startInfo').style.display = "none";
-      document.getElementById('endInfo').style.display = "none";
-      document.getElementById('leaderboard').style.display = "none";
-      document.getElementById('right').innerText = "0";
-      document.getElementById('wrong').innerText = "0";
-      document.getElementById('timer').innerText = "0:00";
-      fretboard.style.display = 'grid';
-      fretboard.style.gridTemplateColumns = `repeat(${tuning.length}, 45px) 1px`;
-      fretboard.style.gridTemplateRows = `repeat(13, calc(85vh/13 - 2px))`;
-      fretboard.style.marginTop = 0;
-      timer();
-      draw();
-    }, 300);
   }
+  setTimeout(function () {
+    username = nickname.value;
+    Cookies.set('username', username, { expires: 14 });
+    right = 0, wrong = 0;
+    sec = 0, min = 0, stop = false;
+    document.getElementById('datadisplay').style.display = 'flex';
+    document.getElementById('noteInp').hidden = false;
+    document.getElementById('startInfo').style.display = "none";
+    document.getElementById('endInfo').style.display = "none";
+    document.getElementById('leaderboard').style.display = "none";
+    document.getElementById('right').innerText = "0";
+    document.getElementById('wrong').innerText = "0";
+    document.getElementById('timer').innerText = "0:00";
+    fretboard.style.display = 'grid';
+    fretboard.style.gridTemplateColumns = `repeat(${tuning.length}, 45px) 1px`;
+    fretboard.style.gridTemplateRows = `repeat(13, calc(85vh/13 - 2px))`;
+    fretboard.style.marginTop = 0;
+    timer();
+    draw();
+  }, 300);
 }
 
 function init() {
@@ -196,7 +195,7 @@ async function finish(timer) {
   let us = await fetchUser()
   if(!us || us < sc) { await addScore(sc); }
   await writeScore()
-  clearTimeout(timer); // Usuń timer po udanej odpowiedzi
+  clearTimeout(timer);
   document.getElementById("loading").style.display = "none";
   document.getElementById("loading").style.backgroundColor = "rgba(0, 0, 0, 0)";
   fretboard.style.display = "none";
