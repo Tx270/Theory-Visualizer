@@ -27,5 +27,8 @@
     "leaderboardPlace": "Place",
     "leaderboardPlayer": "Player",
     "leaderboardBest": "Best",
-    "leaderboardDate": "Date"
+    "leaderboardDate": "Date",
+
+    "visualizer": "Visualizer",
+    "game": "Game"
 }

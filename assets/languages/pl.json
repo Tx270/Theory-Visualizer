@@ -27,5 +27,8 @@
     "leaderboardPlace": "Miejsce",
     "leaderboardPlayer": "Gracz",
     "leaderboardBest": "Najlepszy",
-    "leaderboardDate": "Data"
+    "leaderboardDate": "Data",
+
+    "visualizer": "Wizualizator",
+    "game": "Gra"
 }

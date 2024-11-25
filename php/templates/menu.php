@@ -1,9 +1,8 @@
 <div id="menu" class="modal">
     <div id="menu-content" class="modal-content">
         <span class="close" onclick="closeMenu();">&times;</span>
-        <a href="../visualizer/"> Visualizer </a>
-        <a href="../game/"> Game </a>
-        <a href="#"> Notepad </a>
+        <a href="../visualizer/" id="visualizer" class="trn"></a>
+        <a href="../game/" id="game" class="trn"></a>
     </div>
  </div>
 
