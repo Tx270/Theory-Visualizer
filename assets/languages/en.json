@@ -19,7 +19,8 @@
     
     "unsupported": "Sorry, Your device is not supported yet.",
 
-    "startInfoDesc": "Name 15 notes on the guitar as fast as possible!",
+    "startInfoDesc1": "Name 15 notes on the guitar",
+    "startInfoDesc2": "as fast as possible!",
     "endInfoScore": "Your score is ",
     "endInfoTime": "In time of ",
     "endInfoSeconds": " seconds",

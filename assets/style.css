@@ -187,6 +187,19 @@ body {
   right: 0;
 }
 
+#startInfo h2 {
+  font-size: 50px;
+  margin-bottom: 7px;
+}
+
+#startInfo h4 {
+  font-size: larger;
+  text-align: center;
+  line-height: 25px;
+  font-weight: 500;
+  margin-bottom: 40px;
+}
+
 
 #leaderboard {
   display: none;

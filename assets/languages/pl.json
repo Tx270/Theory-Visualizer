@@ -19,7 +19,8 @@
 
     "unsupported": "Przepraszamy, Twoje urządzenie nie jest jeszcze obsługiwane.",
 
-    "startInfoDesc": "Nazwij 15 dziwięków na gitarze najszybciej jak to możliwe!",
+    "startInfoDesc1": "Nazwij 15 dziwięków na gitarze",
+    "startInfoDesc2": "najszybciej jak to możliwe!",
     "endInfoScore": "Twój wynik to ",
     "endInfoTime": "W czasie ",
     "endInfoSeconds": " sekund",

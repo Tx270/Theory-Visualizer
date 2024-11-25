@@ -61,10 +61,10 @@
     </div>
 
     <div id="startInfo" class="info">
-      <h1> Musixen! </h1>
+      <h2> Musixen! </h2>
+      <h4><span id="startInfoDesc1" class="trn"></span><br><span id="startInfoDesc2" class="trn"></span></h4>
       <input type="text" id="nickname" placeholder="Nickaname" spellcheck="false" onkeypress="if(event.key === 'Enter') { this.blur() }">
       <button onclick="main()" id="startButton"><span>Start</span></button>
-      <p id="startInfoDesc" class="trn"></p>
     </div>
 
     <div id="endInfo" class="info">
