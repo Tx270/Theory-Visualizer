@@ -6,19 +6,19 @@
 
     <div id="settings" class="modal">
       <div id="settings-content" class="modal-content">
-        <span class="close" onclick="closeSettings();">&times;</span>
+        <span class="close" onclick="ok();">&times;</span>
 
         <label id="funcModeScaleLabel" for="funcModeScale" class="trn">
-        <input type="radio" value="scales" name="funcMode" id="funcModeScale" onchange="scalesOrChords(this.value)" checked="true"><span></span></label>
+        <input type="radio" value="scales" name="funcMode" id="funcModeScale" onchange="changedSettings.funcMode = this.value" checked="true"><span></span></label>
         <label id="funcModeChordLabel" for="funcModeChord" class="trn">
-        <input type="radio" value="chords" name="funcMode" id="funcModeChord" onchange="scalesOrChords(this.value)"><span></span></label>
+        <input type="radio" value="chords" name="funcMode" id="funcModeChord" onchange="changedSettings.funcMode = this.value"><span></span></label>
         <label id="displayModeNoteLabel" for="displayModeNote" class="trn">
-        <input type="radio" value="notes" name="displayMode" id="displayModeNote" onchange="notesOrNumbers(this.value)" checked="true"><span></span></label>
+        <input type="radio" value="notes" name="displayMode" id="displayModeNote" onchange="changedSettings.displayMode = this.value" checked="true"><span></span></label>
         <label id="displayModeNumberLable" for="displayModeNumber" class="trn">
-        <input type="radio" value="numbers" name="displayMode" id="displayModeNumber" onchange="notesOrNumbers(this.value)"><span></span></label>
+        <input type="radio" value="numbers" name="displayMode" id="displayModeNumber" onchange="changedSettings.displayMode = this.value"><span></span></label>
 
         <label id="tuningLable" for="tuning" class="trn"><span></span><br>
-        <input list="tunings" type="text" id="tuning" spellcheck="false" onkeypress="enteredTuning(event.key)" onfocusout="enteredTuning('outclicked')" onclick="enteredTuning('clicked')"></label>
+        <input list="tunings" type="text" id="tuning" spellcheck="falsefuncMode" onkeypress="enteredTuning(event.key)" onfocusout="enteredTuning('outclicked')" onclick="enteredTuning('clicked')"></label>
         <datalist id="tunings">
           <option value="E2 A2 D3 G3 B3 E4">E Standard</option>
           <option value="D2 A2 D3 G3 B3 E4">Drop D</option>
@@ -30,7 +30,7 @@
         </datalist>
 
         <label id="soundLable" for="sound" class="trn"><span></span><br>
-        <select id="sound" onchange="soundChange()">
+        <select id="sound" onchange="changedSettings.sound = true">
           <option value="acoustic_guitar_nylon" id="acoustic_guitar_nylon" class="trn"></option>
           <option value="acoustic_guitar_steel" id="acoustic_guitar_steel" class="trn"></option>
           <option value="electric_guitar_clean" id="electric_guitar_clean" class="trn"></option>
@@ -42,8 +42,9 @@
         </select></label>
 
         <label id="colorChangeRangeLable" for="colorChangeRange" class="trn"><span></span>
-        <input type="range" id="colorChangeRange" min="0" max="360" step="5" value="205" oninput="colorChange(this.value);" onchange="Cookies.set('color', this.value, { expires: 14 });"></label>
+        <input type="range" id="colorChangeRange" min="0" max="360" step="5" value="205" oninput="this.style.backgroundColor = 'hsl(' + this.value + ', 93%, 30%)';" onchange="changedSettings.color = this.value"></label>
       
+        <button id="ok" onclick="ok()">Ok</button>
       </div>
     </div>
 

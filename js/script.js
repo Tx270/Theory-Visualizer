@@ -16,6 +16,13 @@ var notes = [];
 var sharpOrFlat = "";
 var scaleName = "";
 var isAnimating = false;
+var changedSettings = {
+    funcMode: false,
+    displayMode: false,
+    tuning: false,
+    sound: false,
+    color: false
+}
 
 // ########################################## - HELPERS - ##########################################################
 
@@ -223,18 +230,11 @@ function closeMenu() {
 
 // ########################################## - SETTINGS - ##########################################################
 
-async function enteredTuning(key) {
+function enteredTuning(key) {
   let input = document.getElementById("tuning");
   if (key == "Enter") {
     input.blur();
     return;
-  }
-
-  if(Cookies.get("mode") === "scales") {
-    var scale = tonal.Scale.get(scaleName).notes;
-  } else {
-    var scale = tonal.Chord.get(scaleName).notes;
-    scale = chord2scale(scale);
   }
 
   if (key == "outclicked") {
@@ -256,26 +256,22 @@ async function enteredTuning(key) {
         break
       }
     }
-
-    tuning = input.value.split(" ");
-    input.placeholder = tuning;
-    document.getElementById("fretboard").innerHTML = "";
-    Cookies.set('tuning', tuning.join("-"), { expires: 14 });
-    await preloadSounds();
-    draw(scale);
+    changedSettings.tuning = true;
   } else if(key == "clicked") {
     input.placeholder = input.value;
     input.value = "";
   }
 }
 
-async function soundChange() {
+function soundChange(value) {
+  if (!value) return;
   sound = document.getElementById("sound").value;
   Cookies.set('sound', sound, { expires: 14 });
-  await preloadSounds()
 }
 
 function scalesOrChords(value) {
+  if (!value) return;
+
   Cookies.set('mode', value, { expires: 14 });
   if(value === "chords") {
     document.getElementById("scaleInp").value = scaleName[0] + (scaleName[1] === "#" || scaleName[1] === "b" ? scaleName[1] : "") + "9";
@@ -293,6 +289,8 @@ function scalesOrChords(value) {
 }
 
 function notesOrNumbers(value) {
+  if (!value) return;
+
   Cookies.set('display', value, { expires: 14 });
   const items = document.querySelectorAll('#fretboard .note');
   items.forEach(item => {
@@ -322,6 +320,49 @@ function notesOrNumbers(value) {
 function colorChange(value) {
   document.getElementById("colorChangeRange").style.backgroundColor = 'hsl(' + value + ', 93%, 30%)';
   document.documentElement.style.cssText = "--main: " + value;
+}
+
+async function ok() {
+  const timer = setTimeout(() => {
+    document.getElementById("loading").style.display = "flex";
+    document.getElementById("loading").style.backgroundColor = "rgba(0, 0, 0, 0.3)";
+  }, 500);
+  
+  scalesOrChords(changedSettings.funcMode);
+  notesOrNumbers(changedSettings.displayMode);
+  soundChange(changedSettings.sound);
+
+  if(changedSettings.tuning === true) {
+    tuning = input.value.split(" ");
+    input.placeholder = tuning;
+    if(Cookies.get("mode") === "scales") {
+      var scale = tonal.Scale.get(scaleName).notes;
+    } else {
+      var scale = tonal.Chord.get(scaleName).notes;
+      scale = chord2scale(scale);
+    }
+    document.getElementById("fretboard").innerHTML = "";
+    Cookies.set('tuning', tuning.join("-"), { expires: 14 });
+    await preloadSounds();
+    draw(scale);
+  }
+  if(changedSettings.color) {
+    colorChange(changedSettings.color);
+    Cookies.set('color', changedSettings.color, { expires: 14 });
+  }
+
+  if (changedSettings.tuning || changedSettings.sound) await preloadSounds();
+
+
+  Object.keys(changedSettings).forEach(key => {
+    changedSettings[key] = false;
+  });
+
+  clearTimeout(timer);
+  document.getElementById("loading").style.display = "none";
+  document.getElementById("loading").style.backgroundColor = "rgba(0, 0, 0, 0)";
+
+  closeSettings();
 }
 
 // ########################################## - TRANSLATIONS - ##########################################################
@@ -371,7 +412,7 @@ async function starter() {
   }
   
   window.onclick = function(event) { 
-    event.target === settings && (closeSettings());
+    event.target === settings && (ok());
     event.target === menu && (closeMenu());
   }
   

@@ -8,8 +8,6 @@ notes = notesSharps;
 
 
 function playGuitarNote(note, octave) {
-  console.log(sound);
-
   const soundKey = sharpToFlat(note) + octave;
   
   if (soundCache[soundKey]) {
