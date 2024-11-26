@@ -42,8 +42,8 @@ function timer(){
 }
 
 function calculateScore(correctAnswers, wrongAnswers, timeInSeconds) {
-  const penalty = 2; // Kara za złą odpowiedź
-  const timeFactor = 5; // Wpływ czasu na wynik
+  const penalty = 2;
+  const timeFactor = 5;
 
   const totalAnswers = correctAnswers + wrongAnswers
 
@@ -114,7 +114,8 @@ function draw() {
 }
 
 function main() {
-  if(!isAlphaNumeric(nickname.value) || !nickname.value || nickname.value.length > 30) {
+  let n = nickname.value.trim();
+  if(!isAlphaNumeric(n) || !n || n.length > 30) {
     alert('Enter a nickname consisting of only letters and numbers below 30 chars');
     return;
   }

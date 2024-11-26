@@ -10,6 +10,7 @@
 
         <label id="funcModeScaleLabel" for="funcModeScale" class="trn">
         <input type="radio" value="scales" name="funcMode" id="funcModeScale" onchange="changedSettings.funcMode = this.value" checked="true"><span></span></label>
+        <!-- <div class="info-icon" onclick="toggleTooltip(this)"> i <div class="tooltip">Here is your tooltip text!</div></div></label> -->
         <label id="funcModeChordLabel" for="funcModeChord" class="trn">
         <input type="radio" value="chords" name="funcMode" id="funcModeChord" onchange="changedSettings.funcMode = this.value"><span></span></label>
         <label id="displayModeNoteLabel" for="displayModeNote" class="trn">
@@ -41,9 +42,12 @@
           <option value="electric_bass_finger" id="electric_bass_finger" class="trn"></option>
         </select></label>
 
+        <label id="languageLable" for="language" class="trn"><span></span><br>
+        <select id="language" onchange="changedSettings.language = true"></select></label>
+
         <label id="colorChangeRangeLable" for="colorChangeRange" class="trn"><span></span>
         <input type="range" id="colorChangeRange" min="0" max="360" step="5" value="205" oninput="this.style.backgroundColor = 'hsl(' + this.value + ', 93%, 30%)';" onchange="changedSettings.color = this.value"></label>
-      
+
         <button id="ok" onclick="ok()">Ok</button>
       </div>
     </div>

@@ -1,5 +1,6 @@
 const fretboard = document.getElementById('fretboard');
 const settings = document.getElementById("settings");
+const scaleMenu = document.getElementById("scaleMenu");
 const menu = document.getElementById("menu");
 const baseUrl = document.querySelector('meta[name="base-url"]').getAttribute('content');
 const notesFlats = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
@@ -8,7 +9,7 @@ const markers = [3, 5, 7, 9, 12];
 const intervals = ["pryma", "nona", "tercja", "kwarta", "kwinta", "seksta", "septyma"]
 const tonal = window.Tonal;
 var languages = JSON.parse(document.querySelector('meta[name="languages"]').getAttribute('content'));
-const language = languages.pop();
+var language = languages.pop();
 var soundCache = {};
 var tuning = [];
 var sound = "";
@@ -21,7 +22,9 @@ var changedSettings = {
     displayMode: false,
     tuning: false,
     sound: false,
-    color: false
+    color: false,
+    language: false,
+    su45: true
 }
 
 // ########################################## - HELPERS - ##########################################################
@@ -182,6 +185,16 @@ async function preloadSounds() {
   console.log("Preloading complete");
 }
 
+function getLanguageLocalName(code, locale = code) {
+  try {
+    // Use Intl.DisplayNames for localization
+    const displayNames = new Intl.DisplayNames([locale], { type: 'language' });
+    return displayNames.of(code) || `Unknown language code: ${code}`;
+  } catch (error) {
+    console.error(`Invalide language code "${code}":`, error);
+  }
+}
+
 // ########################################### - MODALS - #########################################################
 
 function openSettings() {
@@ -228,6 +241,24 @@ function closeMenu() {
   }, { once: true });
 }
 
+function openScaleMenu() {
+  if (isAnimating) return;
+  scaleMenu.classList.add('open');
+  scaleMenu.classList.remove('closing');
+}
+
+function closeScaleMenu() {
+  if (isAnimating) return;
+  isAnimating = true;
+  scaleMenu.classList.add('closing');
+  scaleMenu.style.backgroundColor = "rgba(0, 0, 0, 0)";
+  scaleMenu.addEventListener('animationend', () => {
+    isAnimating = false;
+    scaleMenu.classList.remove('open', 'closing');
+    scaleMenu.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+  }, { once: true });
+}
+
 // ########################################## - SETTINGS - ##########################################################
 
 function enteredTuning(key) {
@@ -261,6 +292,13 @@ function enteredTuning(key) {
     input.placeholder = input.value;
     input.value = "";
   }
+}
+
+async function changeLanguage(value) {
+  if (!value) return;
+  language = document.getElementById("language").value;
+  Cookies.set('language', language, { expires: 14 });
+  await loadTranslation(language);
 }
 
 function soundChange(value) {
@@ -331,6 +369,7 @@ async function ok() {
   scalesOrChords(changedSettings.funcMode);
   notesOrNumbers(changedSettings.displayMode);
   soundChange(changedSettings.sound);
+  changeLanguage(changedSettings.language);
 
   if(changedSettings.tuning === true) {
     tuning = input.value.split(" ");
@@ -358,11 +397,23 @@ async function ok() {
     changedSettings[key] = false;
   });
 
+  loadLanguageSelect();
+
   clearTimeout(timer);
   document.getElementById("loading").style.display = "none";
   document.getElementById("loading").style.backgroundColor = "rgba(0, 0, 0, 0)";
 
   closeSettings();
+}
+
+function loadLanguageSelect() {
+  document.getElementById('language').innerHTML = "";
+  var languageNames = new Intl.DisplayNames([language], { type: 'language' });
+  languages.forEach(element => {
+    let e = languageNames.of(element);
+    document.getElementById('language').innerHTML += `<option value="${element}">${String(e).charAt(0).toUpperCase() + String(e).slice(1)}</option>`
+  });
+  document.getElementById('language').value = language;
 }
 
 // ########################################## - TRANSLATIONS - ##########################################################
@@ -404,6 +455,8 @@ async function starter() {
     document.getElementById("loading").style.backgroundColor = "rgba(0, 0, 0, 0.3)";
   }, 500);
 
+  if(Cookies.get('language') !== undefined) language = Cookies.get('language');
+  loadLanguageSelect();
   await loadTranslation(language);
 
   if (window.innerWidth > 768) {

@@ -376,7 +376,7 @@ th, td {
   accent-color: hsl(var(--main), 93%, 30%);
 }
 
-#settings #settings-content label #tuning, #settings #settings-content label #sound {
+#settings #settings-content label #tuning, #settings #settings-content label select {
   margin: 10px 0px;
   border-radius: 5px;
   padding: 2px;
@@ -416,6 +416,56 @@ th, td {
   background-color: white;
   border-radius: 50%;
   cursor: pointer;
+}
+
+/* TOOLTIPS. FOR LATER. */
+
+.info-icon {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 18px;
+  color: #007bff;
+  border: 1px solid #007bff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.tooltip {
+  position: absolute;
+  top: 50%;
+  left: 150%;
+  transform: translateY(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 10;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.tooltip.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent #333 transparent transparent;
 }
 
 /* ################################### - POPUPS - ########################################### */

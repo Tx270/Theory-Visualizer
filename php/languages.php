@@ -1,4 +1,6 @@
 <?php
+$def = (require $_SERVER['DOCUMENT_ROOT'] . '/php/config.php')['DEF_LANG'];
+
 $files = array_diff(scandir($_SERVER['DOCUMENT_ROOT'] . '/assets/languages'), array('.', '..'));
 $avalibleLangs = [];
 
@@ -27,7 +29,7 @@ $prefered = reset($commonLangs);
 if($prefered) {
     array_push($avalibleLangs, $prefered);
 } else {
-    array_push($avalibleLangs, "en");
+    array_push($avalibleLangs, $def);
 }
 
 return $avalibleLangs;

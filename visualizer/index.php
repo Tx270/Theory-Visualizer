@@ -4,6 +4,12 @@
   <body onload="starter()">
     <audio id="guitarSound"></audio>
 
+    <div id="scaleMenu" class="modal">
+      <div id="scaleMenu-content" class="modal-content">
+        
+      </div>
+    </div>
+
     <div id="settings" class="modal">
       <div id="settings-content" class="modal-content">
         <span class="close" onclick="ok();">&times;</span>
@@ -40,6 +46,9 @@
           <option value="acoustic_bass" id="acoustic_bass" class="trn"></option>
           <option value="electric_bass_finger" id="electric_bass_finger" class="trn"></option>
         </select></label>
+
+        <label id="languageLable" for="language" class="trn"><span></span><br>
+        <select id="language" onchange="changedSettings.language = true"></select></label>
 
         <label id="colorChangeRangeLable" for="colorChangeRange" class="trn"><span></span>
         <input type="range" id="colorChangeRange" min="0" max="360" step="5" value="205" oninput="this.style.backgroundColor = 'hsl(' + this.value + ', 93%, 30%)';" onchange="changedSettings.color = this.value"></label>
