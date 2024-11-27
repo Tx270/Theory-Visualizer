@@ -364,7 +364,7 @@ async function ok() {
   const timer = setTimeout(() => {
     document.getElementById("loading").style.display = "flex";
     document.getElementById("loading").style.backgroundColor = "rgba(0, 0, 0, 0.3)";
-  }, 500);
+  }, 300);
   
   scalesOrChords(changedSettings.funcMode);
   notesOrNumbers(changedSettings.displayMode);
@@ -372,6 +372,7 @@ async function ok() {
   changeLanguage(changedSettings.language);
 
   if(changedSettings.tuning === true) {
+    let input = document.getElementById("tuning");
     tuning = input.value.split(" ");
     input.placeholder = tuning;
     if(Cookies.get("mode") === "scales") {
@@ -491,7 +492,7 @@ async function starter() {
 
   document.getElementById("nav").style.display = "flex";
 
-  preloadSounds();
+  await preloadSounds();
 
   init();
 

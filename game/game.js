@@ -9,9 +9,10 @@ notes = notesSharps;
 
 function playGuitarNote(note, octave) {
   const soundKey = sharpToFlat(note) + octave;
-  
+
   if (soundCache[soundKey]) {
-    soundCache[soundKey].play();
+    const s = soundCache[soundKey].cloneNode();
+    s.play();
   } else {
     console.log("nie ma pliku w cache!");
     const s = new Audio(baseUrl + `assets/audio/${sound}/` + sharpToFlat(note) + octave + ".mp3");
@@ -23,6 +24,7 @@ function playGuitarNote(note, octave) {
     document.getElementById("choosen").style.transform = "scale(1)";
   }, 100);
 }
+
 
 function timer(){
   sec = 0, min = 0;
