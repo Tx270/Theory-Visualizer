@@ -98,13 +98,13 @@ body {
   margin: 10px;
 }
 
-#scaleInp, #noteInp, #nickname {
+#scaleButton, #noteInp, #nickname {
   width: 150px;
   height: 70%;
   text-align: center;
   background-color: #f1f1f1;
   border: white solid 1px;
-  border-radius: 4px;
+  border-radius: 5px;
   color: black;
   font-weight: 900;
   font-size: larger;
@@ -159,7 +159,7 @@ body {
   color: #fff;
   background-color: hsl(var(--main), 93%, 30%);
   border: 0;
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
 .info button span {
@@ -225,7 +225,6 @@ table {
   border-collapse: collapse;
   width: 80%;
   font-weight: 500;
-  display: none;
 }
 
 th, td {
@@ -284,11 +283,11 @@ th, td {
   padding-top: 70px;
 }
 
-.modal.open #settings-content {
+.modal.open #settings-content, .modal.open #scaleMenu-content {
   animation: slideDown 0.2s forwards;
 }
 
-.modal.closing #settings-content {
+.modal.closing #settings-content, .modal.closing #scaleMenu-content {
   animation: slideUp 0.2s forwards;
 }
 
@@ -364,7 +363,7 @@ th, td {
   color: #fff;
   background-color: hsl(var(--main), 93%, 30%);
   border: 0;
-  border-radius: 4px;
+  border-radius: 5px;
   margin: auto;
 }
 
@@ -418,6 +417,70 @@ th, td {
   cursor: pointer;
 }
 
+#scaleMenu-content {
+  overflow: scroll;
+  position: relative;
+}
+
+.selector {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.selector span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border: #444 2px solid;
+  border-radius: 5px;
+  color: #fff;
+  text-align: center;
+  transition: ease 200ms;
+}
+
+.selector .checked {
+  border: hsl(var(--main), 93%, 30%) 2px solid;
+}
+#selector1 {
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+#selector1 span, #selector2 span {
+  width: calc((100%/6) - 6px);
+  margin-left: 1px;
+  margin-right: 1px;
+  aspect-ratio: 1/1;
+}
+
+#scaleMenu-content hr {
+  width: 80%;
+  margin-bottom: 25px;
+}
+
+#scaleList {
+  flex-wrap: wrap;
+}
+
+#scaleList span {
+  height: 40px;
+  font-size: 16px;
+  width: calc(50% - 5px);
+  margin-bottom: 7px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+#scaleList span:nth-child(even) {
+  margin-left: 10px;
+}
+
 /* TOOLTIPS. FOR LATER. */
 
 .info-icon {
@@ -443,7 +506,7 @@ th, td {
   background-color: #333;
   color: #fff;
   padding: 8px;
-  border-radius: 4px;
+  border-radius: 5px;
   font-size: 12px;
   white-space: nowrap;
   visibility: hidden;
@@ -522,4 +585,5 @@ th, td {
   align-items: center;
   justify-content: center;
   transition: ease 200ms;
+  margin: 0;
 }

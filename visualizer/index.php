@@ -6,7 +6,11 @@
 
     <div id="scaleMenu" class="modal">
       <div id="scaleMenu-content" class="modal-content">
-        
+        <span class="close" onclick="closeScaleMenu();">&times;</span>
+        <div class="selector" id="selector1"></div>
+        <div class="selector" id="selector2"></div>
+        <hr>
+        <div class="selector" id="scaleList"></div>
       </div>
     </div>
 
@@ -59,13 +63,11 @@
 
      <nav id="nav">
       <img src="/assets/ham.png" alt="menu" id="hamburger" onclick="openMenu()">
-      <input type="text" id="scaleInp" spellcheck="false" placeholder="C major" autocomplete="off" onkeypress="entered(event.key)" onfocusout="entered('outclicked')" onclick="entered('clicked')">
+      <button id="scaleButton" onclick="openScaleMenu()">C major</button>
       <img src="/assets/set.png" alt="settings" id="notesOrNumbers" class="notesOrNumbers" onclick="openSettings();">
     </nav>
 
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/php/templates/menu.php'; ?>
-
-    <script src="/js/script.js"></script>
     <script src="/visualizer/visualizer.js"></script>
   </body>
 </html>

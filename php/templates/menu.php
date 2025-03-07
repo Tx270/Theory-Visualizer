@@ -9,3 +9,6 @@
 <div id="loading"><div class="loader"></div></div>
 <div id="fretboard"></div>
 <h1 id="unsupported" class="trn"></h1>
+
+<script src="/js/definitions.js"></script>
+<script src="/js/script.js"></script>

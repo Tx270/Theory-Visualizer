@@ -1,4 +1,5 @@
 function draw(scale) {
+  fretboard.innerHTML = "";
   fretboard.style.display = 'grid';
   fretboard.style.gridTemplateColumns = `repeat(${tuning.length}, 45px) 1px`;
   fretboard.style.gridTemplateRows = `repeat(13, calc(90vh/13 - 2px))`;
@@ -78,10 +79,12 @@ function draw(scale) {
 }
 
 function init() {
-  document.getElementById("scaleInp").value = Cookies.get("scale").replace("-"," ");
+  loadScaleList();
 
-  scaleName = document.getElementById("scaleInp").value;
-  document.getElementById("scaleInp").placeholder = scaleName;
+  document.getElementById("scaleButton").value = Cookies.get("scale").replace("-"," ");
+
+  scaleName = document.getElementById("scaleButton").value;
+  document.getElementById("scaleButton").placeholder = scaleName;
   
   if( Cookies.get('mode') === "chords") {
     draw(chord2scale(tonal.Chord.get(Cookies.get("scale").replace("-"," ")).notes));
@@ -90,8 +93,39 @@ function init() {
   }
 }
 
-function entered(key) {
-  let input = document.getElementById("scaleInp");
+function loadScaleList() {
+  document.getElementById('scaleList').innerHTML = "";
+
+  scaleNames[scaleRarity].forEach(element => {
+    const e = document.createElement('span');
+    e.innerHTML = capitalizeFirstLetter(element.split(",")[0]);
+    if(e.innerHTML.length > 13) { e.style.fontSize = "14px"; }
+    if(e.innerHTML.length > 17) { e.style.fontSize = "12px"; }
+    e.addEventListener('click', () => { e.classList.toggle("checked"); });
+    document.getElementById('scaleList').appendChild(e);
+  });
+
+  const half_length = Math.ceil(notesSharps.length / 2);
+  const left = notesSharps.slice(0,half_length);
+  const right = notesSharps.slice(half_length);
+  console.log(right)
+
+  left.forEach(element => {
+    const e = document.createElement('span');
+    e.innerHTML = element;
+    e.addEventListener('click', () => { e.classList.toggle("checked"); });
+    document.getElementById("selector1").appendChild(e);
+  });
+
+  right.forEach(element => {
+    const e = document.createElement('span');
+    e.innerHTML = element;
+    e.addEventListener('click', () => { e.classList.toggle("checked"); });
+    document.getElementById("selector2").appendChild(e);
+  });
+}
+//usless
+function entered() {
   if(Cookies.get("mode") === "scales") {
     var scale = tonal.Scale.get(input.value).notes;
   } else {
@@ -99,37 +133,14 @@ function entered(key) {
     scale = chord2scale(scale);
   }
 
-  if (key == "Enter") {
-    input.blur();
-    return;
-  }
+  scaleName = input.value;
+  Cookies.set('scale', input.value.replace(" ", "-"), { expires: 14 });
 
-  if (key == "outclicked") {
-    if(scale.length > 0 && scale.some(element => element !== "")) {
-      scaleName = input.value;
-      input.placeholder = scaleName;
-      Cookies.set('scale', input.value.replace(" ", "-"), { expires: 14 });
-
-      let notes = document.querySelectorAll(".note");
-      notes.forEach(n => {
-        n.style.transform = "scale(0)";
-      });
-      setTimeout(() => {
-        document.getElementById("fretboard").innerHTML = "";
-        draw(scale);
-      }, 200);
-    }
-    else if(input.value == "") {
-      input.value = scaleName;
-    }
-    else {
-      alert("Not a valid scale/chord!")
-      input.value = scaleName;
-    }
-  } 
-  else if(key == "clicked") {
-    input.value = "";
-  }
+  let notes = document.querySelectorAll(".note");
+  notes.forEach(n => {
+    n.style.transform = "scale(0)";
+  });
+  setTimeout(draw, 200, scale);
 }
 
 function playGuitarNote(id) {

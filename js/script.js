@@ -1,32 +1,3 @@
-const fretboard = document.getElementById('fretboard');
-const settings = document.getElementById("settings");
-const scaleMenu = document.getElementById("scaleMenu");
-const menu = document.getElementById("menu");
-const baseUrl = document.querySelector('meta[name="base-url"]').getAttribute('content');
-const notesFlats = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
-const notesSharps = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
-const markers = [3, 5, 7, 9, 12];
-const intervals = ["pryma", "nona", "tercja", "kwarta", "kwinta", "seksta", "septyma"]
-const tonal = window.Tonal;
-var languages = JSON.parse(document.querySelector('meta[name="languages"]').getAttribute('content'));
-var language = languages.pop();
-var soundCache = {};
-var tuning = [];
-var sound = "";
-var notes = [];
-var sharpOrFlat = "";
-var scaleName = "";
-var isAnimating = false;
-var changedSettings = {
-    funcMode: false,
-    displayMode: false,
-    tuning: false,
-    sound: false,
-    color: false,
-    language: false,
-    su45: true
-}
-
 // ########################################## - HELPERS - ##########################################################
 
 function encodeNote(input) {
@@ -195,6 +166,10 @@ function getLanguageLocalName(code, locale = code) {
   }
 }
 
+function capitalizeFirstLetter(val) {
+  return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+}
+
 // ########################################### - MODALS - #########################################################
 
 function openSettings() {
@@ -312,15 +287,9 @@ function scalesOrChords(value) {
 
   Cookies.set('mode', value, { expires: 14 });
   if(value === "chords") {
-    document.getElementById("scaleInp").value = scaleName[0] + (scaleName[1] === "#" || scaleName[1] === "b" ? scaleName[1] : "") + "9";
-    scaleName = document.getElementById("scaleInp").value;
-    document.getElementById("scaleInp").placeholder = scaleName;
     Cookies.set('scale', scaleName, { expires: 14 });
     draw(chord2scale(tonal.Chord.get(scaleName.replace("-"," ")).notes));
   } else {
-    document.getElementById("scaleInp").value = scaleName[0] + (scaleName[1] === "#" || scaleName[1] === "b" ? scaleName[1] : "") + " major";
-    scaleName = document.getElementById("scaleInp").value;
-    document.getElementById("scaleInp").placeholder = scaleName;
     Cookies.set('scale', scaleName, { expires: 14 });
     draw(tonal.Scale.get(scaleName.replace("-"," ")).notes);
   }
@@ -359,6 +328,7 @@ function colorChange(value) {
   document.getElementById("colorChangeRange").style.backgroundColor = 'hsl(' + value + ', 93%, 30%)';
   document.documentElement.style.cssText = "--main: " + value;
 }
+
 
 async function ok() {
   const timer = setTimeout(() => {
@@ -407,17 +377,7 @@ async function ok() {
   closeSettings();
 }
 
-function loadLanguageSelect() {
-  document.getElementById('language').innerHTML = "";
-  var languageNames = new Intl.DisplayNames([language], { type: 'language' });
-  languages.forEach(element => {
-    let e = languageNames.of(element);
-    document.getElementById('language').innerHTML += `<option value="${element}">${String(e).charAt(0).toUpperCase() + String(e).slice(1)}</option>`
-  });
-  document.getElementById('language').value = language;
-}
-
-// ########################################## - TRANSLATIONS - ##########################################################
+// ########################################## - LOAD - ##########################################################
 
 async function loadTranslation(language) {
   try {
@@ -447,7 +407,14 @@ async function loadTranslation(language) {
   }
 }
 
-// ########################################## - STARTER - ##########################################################
+function loadLanguageSelect() {
+  document.getElementById('language').innerHTML = "";
+  languages.forEach(element => {
+    let languageNames = new Intl.DisplayNames([element], { type: 'language' });
+    document.getElementById('language').innerHTML += `<option value="${element}">${capitalizeFirstLetter(languageNames.of(element))}</option>`
+  });
+  document.getElementById('language').value = language;
+}
 
 async function starter() {
 
@@ -457,6 +424,7 @@ async function starter() {
   }, 500);
 
   if(Cookies.get('language') !== undefined) language = Cookies.get('language');
+  if(languageGet != "" && languages.includes(languageGet)) language = languageGet;
   loadLanguageSelect();
   await loadTranslation(language);
 
@@ -468,6 +436,7 @@ async function starter() {
   window.onclick = function(event) { 
     event.target === settings && (ok());
     event.target === menu && (closeMenu());
+    event.target === scaleMenu && (closeScaleMenu());
   }
   
   Cookies.get('scale') === undefined && Cookies.set('scale', 'C-major', { expires: 14 });
