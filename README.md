@@ -16,6 +16,11 @@ A web-based mobile app that helps users practice musical scales and chords by vi
 
 This project is hosted on [InfinityFree](https://www.infinityfree.com/) under [this](https://tx.ct.ws/) url.
 
+## Examples
+<img width="544" height="841" alt="image" src="https://github.com/user-attachments/assets/b9c952af-d07a-4111-9ad2-1f746f68236c" />
+<img width="544" height="841" alt="image" src="https://github.com/user-attachments/assets/1cfc8adc-9860-48a2-89d5-1d93544e0415" />
+<img width="544" height="841" alt="image" src="https://github.com/user-attachments/assets/ab1211cb-65e7-43e3-b27e-0f6271a22c5d" />
+
 ## Acknowledgments
 **I am using the following APIs/libraries/packages for my web app:**
 - [**js-cookie**](https://github.com/js-cookie/js-cookie): For help with cookie management.
